@@ -1,17 +1,66 @@
 # skills
 
 ![Claude Code Skills](https://img.shields.io/badge/Claude_Code-Skills-7057FF)
-![Skills](https://img.shields.io/badge/skills-2-1f6feb)
+![Skills](https://img.shields.io/badge/skills-11-1f6feb)
 ![License](https://img.shields.io/badge/license-MIT-2ea043)
 
-Craig Trim's Claude Code skills for stress-testing plans and designs.
+Craig Trim's Claude Code skills for turning ideas into shipped code.
+
+## How the skills relate
+
+Most work starts as an issue and ends as a pull request. `create-issue` followed by `impl-issue` covers almost every existing issue, and `impl-issue` runs a coding loop until the work is done.
+
+```mermaid
+flowchart TD
+    PRD([PRD]) --> P2I[prd-to-issues]
+    PRD --> P2P[prd-to-plan]
+    RES[research] --> CI[create-issue]
+    TRI[triage-issue] --> CI
+    P2I --> CI
+
+    GM[grill-me] -.grill.-> P2P
+    GC[grill-codex] -.grill.-> II
+
+    P2P -.plan.-> II[impl-issue]
+    CI ==> II
+    II ==>|opens| PR([Pull Request])
+    II -.next issue.-> CI
+    II -->|coding loop| II
+    II --> ST[smoke-test]
+    II --> GIT[git-commit]
+
+    TON[tonality]:::voice -.voice.-> CI
+    TON -.voice.-> RES
+    TON -.voice.-> GIT
+
+    classDef voice fill:#7057FF,color:#fff,stroke:#5a46cc;
+    classDef core fill:#1f6feb,color:#fff,stroke:#1b5fcf;
+    class CI,II core;
+```
+
+The blue spine is the everyday path. Everything else feeds it: research and triage open issues, PRDs fan out into plans and issues, the grills stress-test a design before code is written, and `tonality` governs every word that reaches a human.
 
 ## Skills
 
-### grill-me
+### Intake and planning
 
-Interview the user relentlessly about a plan or design until reaching shared understanding. One question per turn, highest-leverage first, walking each branch of the decision tree. Every round carries a recommended answer. The whole session lives in a single GitHub issue under the `grill-me` label.
+- **create-issue** — File a GitHub issue in the current repo, auto-detecting the remote and cross-referencing related issues.
+- **research** — Research a topic with abundant academic sources, then file the findings as a `research` issue.
+- **triage-issue** — Explore the codebase to find a bug's root cause, then file an issue with a TDD-based fix plan.
+- **prd-to-issues** — Break a PRD into independently grabbable issues using tracer-bullet vertical slices.
+- **prd-to-plan** — Turn a PRD into a multi-phase implementation plan saved as a local Markdown file.
 
-### grill-codex
+### Implementation
 
-The same relentless grill, but the `codex` CLI answers instead of the human. Claude drives both sides: it writes each question with options and a recommendation, invokes codex headlessly to choose, records the answer, applies the edit, and moves on. All Q&A lives as comments on one GitHub issue under the `grill-codex` label.
+- **impl-issue** — Implement a GitHub issue end to end in an isolated `/tmp` worktree, then open a PR.
+- **git-commit** — Atomic commits with conventional prefixes and no attribution footers.
+- **smoke-test** — Standards for writing and reviewing smoke tests against a deployed app.
+
+### Stress-testing a design
+
+- **grill-me** — Interview the user relentlessly about a plan, one question per turn, until the design is settled.
+- **grill-codex** — The same grill, but the `codex` CLI answers each question instead of the human.
+
+### Cross-cutting
+
+- **tonality** — Enforce Craig's authorial voice in any prose Claude writes or edits.
