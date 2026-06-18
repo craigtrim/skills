@@ -45,23 +45,23 @@ The blue spine is the everyday path. Everything else feeds it: research and tria
 
 ### Intake and planning
 
-- **create-issue** — File a GitHub issue in the current repo, auto-detecting the remote and cross-referencing related issues.
-- **research** — Research a topic with abundant academic sources, then file the findings as a `research` issue.
-- **triage-issue** — Explore the codebase to find a bug's root cause, then file an issue with a TDD-based fix plan.
-- **prd-to-issues** — Break a PRD into independently grabbable issues using tracer-bullet vertical slices.
-- **prd-to-plan** — Turn a PRD into a multi-phase implementation plan saved as a local Markdown file.
+- **create-issue**: File a GitHub issue in the current repo, auto-detecting the remote and cross-referencing related issues.
+- **research**: Research a topic with abundant academic sources, then file the findings as a `research` issue.
+- **triage-issue**: Explore the codebase to find a bug's root cause, then file an issue with a TDD-based fix plan.
+- **prd-to-issues**: Break a PRD into independently grabbable issues using tracer-bullet vertical slices.
+- **prd-to-plan**: Turn a PRD into a multi-phase implementation plan saved as a local Markdown file.
 
 ### Implementation
 
-- **impl-issue** — Implement a GitHub issue end to end in an isolated `/tmp` worktree, then open a PR.
-- **git-commit** — Atomic commits with conventional prefixes and no attribution footers.
-- **smoke-test** — Standards for writing and reviewing smoke tests against a deployed app.
+- **impl-issue**: Implement a GitHub issue end to end in an isolated `/tmp` worktree, then open a PR.
+- **git-commit**: Atomic commits with conventional prefixes and no attribution footers.
+- **smoke-test**: Standards for writing and reviewing smoke tests against a deployed app.
 
 ### Stress-testing a design
 
-- **grill-me** — Interview the user relentlessly about a plan, one question per turn, until the design is settled.
-- **grill-codex** — The same grill, but the `codex` CLI answers each question instead of the human.
+- **grill-me**: Interview the user relentlessly about a plan, one question per turn, until the design is settled.
+- **grill-codex**: The same grill, but the `codex` CLI answers each question instead of the human.
 
 ### Cross-cutting
 
-- **tonality** — Enforce Craig's authorial voice in any prose Claude writes or edits.
+- **tonality**: Enforce Craig's authorial voice in any prose Claude writes or edits.
