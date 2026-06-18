@@ -29,15 +29,14 @@ flowchart TD
     II --> ST[smoke-test]
     II --> GIT[git-commit]
 
-    TON[tonality]:::voice -.voice.-> CI
+    TON[tonality] -.voice.-> CI
     TON -.voice.-> RES
     TON -.voice.-> GIT
 
     classDef core fill:#1f6feb,color:#fff,stroke:#1b5fcf;
     classDef other fill:#e1e7ef,color:#1f2933,stroke:#9aa5b1;
-    classDef voice fill:#f3f1fa,color:#8a82b3,stroke:#cfc7ef,stroke-dasharray:3 3;
     class CI,II core;
-    class PRD,P2I,P2P,RES,TRI,GM,GC,PR,ST,GIT other;
+    class PRD,P2I,P2P,RES,TRI,GM,GC,PR,ST,GIT,TON other;
 ```
 
 The blue spine is the everyday path. Everything else feeds it: research and triage open issues, PRDs fan out into plans and issues, the grills stress-test a design before code is written, and `tonality` governs every word that reaches a human.
