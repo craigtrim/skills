@@ -8,7 +8,7 @@ description: Implement a GitHub issue end to end in an isolated /tmp worktree, t
 **Input (required):** a GitHub issue number or URL — `$ARGUMENTS`.
 
 Take one tracked GitHub issue from "open" to "merged, with a test recipe in the
-user's hands": read it, build it in an isolated worktree, write the smoke
+user's hands": read it, claim it, build it in an isolated worktree, write the smoke
 coverage the change actually warrants, supply any migration scripts the change
 needs, commit, open a pull request, and hand it to codex — using codex as your
 second opinion whenever a question comes up along the way. Codex reviews the PR
@@ -55,6 +55,25 @@ gh issue view <N> --repo "$REPO" --comments
 ```
 
 Build a concrete scope from the issue body and its discussion.
+
+**Claim the issue before anything else.** The moment it resolves — before
+grilling, before the worktree — stamp it so anyone watching knows it is taken:
+assign yourself, mark it in-progress, and post a claim comment with a timestamp
+and a run token.
+
+```bash
+gh issue edit <N> --repo "$REPO" --add-assignee @me
+gh issue edit <N> --repo "$REPO" --add-label "in-progress" 2>/dev/null \
+  || echo "(no 'in-progress' label in this repo — assignee + comment still mark the claim)"
+gh issue comment <N> --repo "$REPO" --body \
+  "🤖 Claimed by \`impl-issue\` at $(date -u '+%Y-%m-%dT%H:%M:%SZ') (run $$). Implementation in progress; a PR will follow and reference this issue."
+```
+
+This is a status marker, not authored prose: post it as written, do **not** route
+it through `/tonality`. Post it once per run; if you are resuming a run that
+already claimed the issue, do not re-post. If you abandon the run before a PR
+exists, post a one-line comment releasing the claim and drop the assignee/label,
+so the issue does not sit falsely claimed.
 
 **The issue's self-assessment is not authoritative.** An issue that calls itself
 mechanical, "a clean port", "follows the established pattern", or says outright
@@ -330,6 +349,11 @@ and do not write a test recipe.
 ## Guardrails
 
 - **Requires an issue.** No issue number/URL in `$ARGUMENTS` → stop and ask.
+- **Claim before building.** Right after the issue resolves, assign yourself,
+  add an `in-progress` label (best effort, tolerate its absence), and post a
+  timestamped claim comment with a run token — so the issue reads as taken before
+  any grilling or worktree work. Post it as-is, not via `/tonality`. Release the
+  claim (comment + drop assignee/label) if you abandon the run before a PR exists.
 - **The issue's self-assessment is not authoritative.** "Mechanical", "needs no
   grill", "follows the pattern" are claims to verify, not facts to accept. Walk
   the design forks before building and resolve the ones that change what you
