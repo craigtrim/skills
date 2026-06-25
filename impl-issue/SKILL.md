@@ -264,6 +264,9 @@ EOF
 ```
 
 Link the issue so it auto-closes on merge: include `Closes #<N>` in the body.
+GitHub accepts any closing keyword followed by `#<N>`: `close`/`closes`/`closed`,
+`fix`/`fixes`/`fixed`, or `resolve`/`resolves`/`resolved`. The merge must land on
+the default branch for the auto-close to fire.
 
 PR body must cover: what changed and why (tied to the issue), the smoke coverage
 added (or why none), migration script details (or that none is needed), and any
